@@ -29,6 +29,9 @@
 			background-color: var( --muriel-hot-green-500 );
 			color: var( --muriel-white );
 		}
+		&.wp-block-jetpack-mailchimp__is-amp {
+			display: block;
+		}
 	}
 
 }
