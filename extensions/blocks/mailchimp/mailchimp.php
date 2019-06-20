@@ -104,9 +104,7 @@ function jetpack_mailchimp_block_load_assets( $attr ) {
 						required
 						title="<?php echo esc_attr( $values['emailPlaceholder'] ); ?>"
 						type="email"
-						<?php if ( $is_amp_request ) : ?>
 						name="email"
-						<?php endif; ?>
 					/>
 				</p>
 				<p>
