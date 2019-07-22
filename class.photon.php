@@ -358,7 +358,7 @@ class Jetpack_Photon {
 					// WP Attachment ID, if uploaded to this site
 					if (
 						preg_match( '#class=["|\']?[^"\']*wp-image-([\d]+)[^"\']*["|\']?#i', $images['img_tag'][ $index ], $attachment_id ) &&
-						0 === strpos( $src, $upload_dir['baseurl'] ) &&
+						self::is_local_upload( $src ) &&
 						/**
 						 * Filter whether an image using an attachment ID in its class has to be uploaded to the local site to go through Photon.
 						 *
@@ -1263,5 +1263,18 @@ class Jetpack_Photon {
 	 */
 	public function _override_image_downsize_in_rest_edit_context() {
 		return true;
+	}
+
+	/**
+	 * Checks if image is a locally upload file via it's URL
+	 *
+	 * @param string $url
+	 *
+	 * @return bool
+	 */
+	public static function is_local_upload( $url ) {
+		$upload_dir = wp_get_upload_dir();
+
+		return 0 === strpos( $url, $upload_dir['baseurl'] );
 	}
 }
